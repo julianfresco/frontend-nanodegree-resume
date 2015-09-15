@@ -13,20 +13,38 @@ var bio = {
   "skills": ["JavaScript", "PHP", "HTML", "CSS", "Node.js", "MySQL", "Redis"],
   "biopic": "http://julianfresco.com/assets/img/intro.jpg",
   "display": function(){
-    // Convert bio properties to HTML elements using templates
+    // Create bio content HTML
     var formattedName = HTMLheaderName.replace('%data%', this.name);
     var formattedRole = HTMLheaderRole.replace('%data%', this.role);
-    var formattedContacts = [];
-    // Loop throught this.contacts to create LI elements
+    var formattedBioPic = HTMLbioPic.replace("%data%", this.biopic);
+    var formattedWelcomeMsg = HTMLwelcomeMsg.replace('%data%', this.welcomeMessage);
+    var formattedContacts = [], formattedSkills = [];
+    // Loop through this.contacts to create LI elements
     for(item in this.contacts) {
-      var newListItem = HTMLcontactGeneric.replace('%contact%', item)
+      var newContactInfo = HTMLcontactGeneric.replace('%contact%', item)
           .replace('%data%', this.contacts[item]);
-      formattedContacts.push(newListItem);
+      formattedContacts.push(newContactInfo);
     }
-    // Append bio elements to page
-    $('#header').prepend(formattedRole).prepend(formattedName);
+    // Loop through this.skills to create LI elements
+    for(item in this.skills) {
+      var newSkill = HTMLskills.replace("%data%", this.skills[item]);
+      formattedSkills.push(newSkill);
+    }
+
+    // Prepend bio elements to #header
+    $('#header').prepend(formattedRole)
+        .prepend(formattedName);
+    // Loop through and append contacts to page
     for(item in formattedContacts) {
       $('#topContacts').append(formattedContacts[item]);
+    }
+    // Append elements to #header
+    $('#header').append(formattedBioPic)
+        .append(formattedWelcomeMsg)
+        .append(HTMLskillsStart);
+    // Loop through and append skills to page
+    for(item in formattedSkills) {
+      $('#skills').append(formattedSkills[item]);
     }
   }
 };
@@ -70,7 +88,27 @@ var work = {
       "description": "Developed and supported dynamic web applciations using technologies such as Laravel, PHP, Drupal, MySQL, HTML, CSS, JavaScript, and Java."
     }
   ],
-  "display": function(){}
+  "display": function(){
+    // Create work content HTML
+    var formattedJobs = [];
+    // Loop through and create job HTML elements
+    for (item in this.jobs) {
+      // Add elements to create work entry HTML string
+      var newJob = HTMLworkEmployer.replace("%data%", this.jobs[item].employer);
+      newJob += HTMLworkTitle.replace('%data%', this.jobs[item].title);
+      newJob += HTMLworkDates.replace('%data%', this.jobs[item].dates);
+      newJob += HTMLworkLocation.replace('%data%', this.jobs[item].location);
+      newJob += HTMLworkDescription.replace('%data%', this.jobs[item].description);
+      // Add work entry to formattedJobs
+      formattedJobs.push(newJob);
+    }
+
+    // Loop through and add job elements to page
+    for(item in formattedJobs) {      
+      $('#workExperience').append(HTMLworkStart);
+      $('#workExperience .work-entry:last').append(formattedJobs[item]);
+    }
+  }
 };
 
 var projects = {
@@ -98,8 +136,12 @@ var projects = {
 };
 
 
-// Iterate over JSON data, append to DOM
+// Call display methods on data objects to build page content
 bio.display();
+work.display();
+projects.display();
+education.display();
+
 
 
 
