@@ -68,7 +68,38 @@ var education = {
       "url": "https://www.udacity.com/course/javascript-basics--ud804"
     }
   ],
-  "display": function(){}
+  "display": function(){
+    var formattedSchools = [], formattedOnlineCourses = [];
+    // Loop through schools to create education-entry elements
+    for (item in this.schools) {
+      var newSchool = HTMLschoolName.replace("%data%", this.schools[item].name);
+      newSchool += HTMLschoolDegree.replace("%data%", this.schools[item].degree)
+      newSchool += HTMLschoolDates.replace("%data%", this.schools[item].dates)
+      newSchool += HTMLschoolLocation.replace("%data%", this.schools[item].location)
+      newSchool += HTMLschoolMajor.replace("%data%", this.schools[item].majors.join(", "))
+      formattedSchools.push(newSchool);
+    }
+    // Loop through Online Coursess to create education-entry elements
+    for (item in this.onlineCourses) {
+      var newOnlineCourse = HTMLonlineTitle.replace("%data%", this.onlineCourses[item].title);
+      newOnlineCourse += HTMLonlineSchool.replace("%data%", this.onlineCourses[item].school);
+      newOnlineCourse += HTMLonlineDates.replace("%data%", this.onlineCourses[item].date);
+      newOnlineCourse += HTMLonlineURL.replace("%data%", this.onlineCourses[item].url);
+      formattedOnlineCourses.push(newOnlineCourse);
+    }
+
+    // Loop through and append formattedSchools
+    for (item in formattedSchools) {
+      $('#education').append(HTMLschoolStart);
+      $('#education .education-entry:last').append(formattedSchools[item]);
+    }
+    // Loop through and append formattedOnlineCourses
+    $('#education').append(HTMLonlineClasses);
+    for (item in formattedOnlineCourses) {
+      $('#education').append(HTMLschoolStart);
+      $('#education .education-entry:last').append(formattedOnlineCourses[item]);
+    }
+  }
 };
 
 var work = {
