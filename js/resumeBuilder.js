@@ -186,12 +186,19 @@ var projects = {
   }
 };
 
+var map = {
+  "display": function() {
+    // Add map to page
+    $('#mapDiv').append(googleMap);
+  }
+}
 
 // Call display methods on data objects to build page content
 bio.display();
 work.display();
 projects.display();
 education.display();
+map.display();
 
 
 
