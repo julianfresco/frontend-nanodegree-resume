@@ -132,7 +132,27 @@ var projects = {
       "images": ["http://placekitten.com/g/400/250"]
     }
   ],
-  "display": function(){}
+  "display": function(){
+    var formattedProjects = [];
+    // Loop through and create job HTML elements
+    for (item in this.projects) {
+      // Add elements to create work entry HTML string
+      var newProject = HTMLprojectTitle.replace('%data%', this.projects[item].title);
+      newProject += HTMLprojectDates.replace('%data%', this.projects[item].dates);
+      newProject += HTMLprojectDescription.replace('%data%', this.projects[item].description);
+      for (img in this.projects[item].images) {
+        newProject += HTMLprojectImage.replace('%data%', this.projects[item].images[img]);
+      }
+      // Add work entry to formattedProjects
+      formattedProjects.push(newProject);
+    }
+
+    // Loop through and add project elements to page
+    for (item in formattedProjects) {
+      $('#projects').append(HTMLprojectStart);
+      $('#projects .project-entry:last').append(formattedProjects[item]);
+    }
+  }
 };
 
 
