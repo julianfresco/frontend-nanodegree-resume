@@ -5,8 +5,8 @@ var bio = {
   "contacts" : {
     "mobile": "987-654-3210",
     "email": "julianfresco@users.noreply.github.com",
-    "github": "https://github.com/julianfresco",
-    "twitter": "https://twitter.com/julianFresco",
+    "github": "julianfresco",
+    "twitter": "@julianFresco",
     "location": "Los Angeles, CA"
   },
   "welcomeMessage": "A dangerous coding ninja",
