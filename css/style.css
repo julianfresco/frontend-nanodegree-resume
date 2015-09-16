@@ -11,7 +11,7 @@ h5,
 h6 {
   padding:0;
   margin:0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 .clear-fix {
@@ -26,7 +26,7 @@ h6 {
 
 h1 {
   font-size: 40px;
-  color: #f5a623;
+  color: rgb(0, 236, 255);
   line-height: 48px;
   display: inline;
 }
@@ -100,7 +100,7 @@ a {
 }
 
 #skills-h3 {
-  color: #f5ae23;
+  color: rgb(0, 236, 255);
   display: none;
 }
 
@@ -110,6 +110,14 @@ a {
 
 .orange-text {
   color: #f5ae23;
+}
+
+.seafoam {
+  background-color: rgb(34, 255, 214);
+}
+
+.blue-text {
+  color: rgb(0, 236, 255);
 }
 
 .white-text {
@@ -124,12 +132,14 @@ a {
 }
 
 .dark-gray {
-  background-color: #4a4a4a;
+  background-color: rgb(96, 96, 96);
 }
 
 /* TODO: Replace with image later */
 #header {
-  background-color: #484848;
+  background-color: rgb(130, 130, 130);
+  border-bottom: solid 12px rgb(34, 255, 214);
+  border-top: solid 12px rgb(34, 255, 214);
 }
 
 .flex-box {
